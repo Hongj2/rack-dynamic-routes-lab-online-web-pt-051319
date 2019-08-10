@@ -6,8 +6,10 @@ class Application
     req  = Rake::Request.new(env)
     
     if req.path.match(/items/)
-      item = req.parms["item"]
-      if items.include?(item)
+      item_name = req.path.split ("/items/").last
+      item= @@items.find{|i| i.name == item_name}
+      if items.nill?
+        v
         item.price
       else
         resp.write "error"
